@@ -7,10 +7,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-keywords=['milk tea', 'bubble tea', '奶茶', '茶']
+keywords=['美容', '美发', '理发', '造型', '沙龙']#good
 locations=['new york city']
 
-max_data_keyword_per_location = 100
+max_data_keyword_per_location = 500 #cool
 
 for location in locations:
     for keyword in keywords:
@@ -23,7 +23,7 @@ for location in locations:
         driver.get(url)
         while max_data_keyword_per > 0:
             time.sleep(5)
-            store_name = driver.find_elements_by_css_selector('.cXedhc.uQ4NLd')
+            store_name = driver.find_elements_by_css_selector('.C8TUKc.hide-focus-ring.rllt__link.a-no-hover-decoration')
             for x in range(0, len(store_name)-1):
                 try:
                     store_name[x].click()
@@ -57,8 +57,8 @@ for location in locations:
                     
                     with open(os.getcwd()+"//data.json", "a") as outfile: 
                         outfile.write(json_object) 
-                except:
-                    pass
+                except Exception as e:
+                    print(e)
             
             max_data_keyword_per-= 20
             if max_data_keyword_per > 0:
